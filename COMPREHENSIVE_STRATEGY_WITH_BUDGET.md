@@ -803,12 +803,12 @@ Phase 1-2 (Weeks 1-4): Baseline only?
 
 ### SHOULD DO
 
-5. **Tier 2B: Uncertainty** (risk stratification, $13)
+1. **Tier 2B: Uncertainty** (risk stratification, $13)
 2. **Tier 2C: Missing Modality** (robustness, $5)
 
 ### NICE TO HAVE
 
-7. **Tier 3A: Attention for Gait** (+0.5-1%, $10, if time)
+1. **Tier 3A: Attention for Gait** (+0.5-1%, $10, if time)
 2. **Tier 3B: Domain Adversarial** (+1-2%, $25, if schedule allows)
 
 ### SKIP

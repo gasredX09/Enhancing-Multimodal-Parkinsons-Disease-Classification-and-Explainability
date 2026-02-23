@@ -15,16 +15,19 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Speech (EfficientNet on Mel-Spectrograms)
 
 **Primary Method: `SmoothGradCAMpp`**
+
 - Generates attention maps on mel-spectrograms showing which frequency bands and time steps are important
 - Robust to noise and handles multiple discriminative regions well
 - Implementation: Use `torchcam.methods.SmoothGradCAMpp` on the last convolutional layer
 - Visualize by overlaying on the mel-spectrogram with a jet colormap
 
 **Secondary Method: SHAP on Pooled Embeddings**
+
 - If you export CNN feature vectors (e.g., from the global pool before classification layer), apply SHAP to show per-feature contributions
 - Provides a summary-level view of which acoustic characteristics (pitch, energy, etc.) drive predictions
 
 **Occlusion Sensitivity (Optional)**
+
 - Mask contiguous time-frequency regions and measure probability drop
 - Shows which acoustic bands are most critical for the model's decision
 
@@ -33,17 +36,20 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Handwriting (ResNet-50 on Spiral/Wave Images)
 
 **Primary Method: `SmoothGradCAMpp`**
+
 - Shows which regions of the spiral/wave drawing the model focuses on (tremors, irregularities)
 - More robust than basic Grad-CAM for capturing multiple areas of interest (strokes, curves)
 - Implementation: Use `torchcam.methods.SmoothGradCAMpp` on ResNet's layer4[-1].conv3
 - Overlay on the original image with alpha blending for clear visualization
 
 **Secondary Method: Integrated Gradients**
+
 - Provides per-pixel importance scores along a baseline (blank image or Gaussian noise)
 - More theoretically grounded than gradient-based methods; good for publications
 - Implementation: Use `captum.attr.IntegratedGradients` on the image input
 
 **Occlusion Sensitivity (Optional)**
+
 - Mask patches of the image and measure prediction change
 - Highlights critical stroke regions and drawing features
 
@@ -52,16 +58,19 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Gait (Autoencoder Embeddings + Classifier)
 
 **Primary Method: SHAP on Feature Vectors**
+
 - Apply `shap.TreeExplainer` if using a tree-based classifier (Random Forest, XGBoost)
 - Or use `shap.DeepExplainer` if classifier is a neural network
 - Shows which gait features (joint angles, velocities, symmetry indices, etc.) are most predictive
 
 **Secondary Method: Temporal Saliency / Channel Importance**
+
 - Occlude sliding windows across time steps (e.g., 10-step windows) and measure probability drop
 - Identify critical gait phases (stance, swing, turning)
 - Occlude individual sensor channels/axes to show which dimensions matter most
 
 **Tertiary Method: Integrated Gradients on Embeddings**
+
 - If using deep embeddings from the autoencoder, compute IG on the embedding layer
 - Traces back to which raw sensor values contributed to the learned representation
 
@@ -72,17 +81,20 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Speech + Gait
 
 **Modality Ablation**
+
 - Compute predictions with speech zeroed → shows gait-only contribution
 - Compute predictions with gait zeroed → shows speech-only contribution
 - Visualize as a bar chart: original prediction confidence, speech-only, gait-only
 - Intuitive for clinicians: "What if patient had speech disorder only?"
 
 **Grouped SHAP on Fused Vector**
+
 - Apply SHAP TreeExplainer on the concatenated (speech_features, gait_features) vector
 - Color/group by modality (e.g., speech features in blue, gait in orange)
 - Shows which individual features push the decision and their modality origin
 
 **Consistency Checks**
+
 - Do both modalities's top features agree on the class label?
 - Highlight instances where modalities disagree (might be interesting edge cases or errors)
 
@@ -91,15 +103,18 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Handwriting + Gait
 
 **Side-by-Side Visual + Tabular**
+
 - Left panel: Handwriting `SmoothGradCAMpp` heatmap overlay
 - Right panel: Gait feature importance (SHAP bar chart)
 - Table below: Top 3–5 features from each modality with their contribution scores
 
 **Grouped SHAP on Fused Vector**
+
 - If early fusion, segment the concatenated vector into handwriting block and gait block
 - Use grouped SHAP to compare modality-level contributions
 
 **Counterfactual Analysis (Optional)**
+
 - Minimal perturbation in gait features to flip prediction
 - Minimal patch modification in handwriting to flip prediction
 - Shows decision boundaries and robustness
@@ -109,15 +124,18 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Handwriting + Speech
 
 **Dual Saliency Panels**
+
 - Top: Handwriting `SmoothGradCAMpp` overlay on spiral image
 - Bottom: Speech `SmoothGradCAMpp` overlay on mel-spectrogram
 - Aligned on the same individual for easy visual comparison
 
 **Late Fusion Attention Weights (if applicable)**
+
 - If you implement late fusion with learned attention, visualize the attention weights
 - Acts as a natural modality attribution: hand drawing 60%, speech 40%, etc.
 
 **Per-Modality Confidence**
+
 - Show what each modality alone would predict
 - Compare to the fused prediction to see synergy/conflict
 
@@ -128,6 +146,7 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ### Integrated Trimodal XAI Suite
 
 **1. Individual Modality Saliency (Stacked View)**
+
 ```
 ┌─────────────────────────────────────┐
 │  Handwriting SmoothGradCAMpp        │  (spatial regions)
@@ -140,9 +159,11 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 │                                     │
 └─────────────────────────────────────┘
 ```
+
 - One figure per subject showing all three modality explanations
 
 **2. Global SHAP on 70D Fused Vector**
+
 - Apply SHAP TreeExplainer on the final XGBoost trimodal classifier
 - Group features by modality using color/legend:
   - Speech PCA-50 features (blue)
@@ -152,17 +173,20 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 - Force plot for individual predictions shows how each feature pushes toward HC or PD
 
 **3. Modality Contribution Summary**
+
 - Compute mean absolute SHAP value for each modality block
 - Bar chart: "Speech contributes 45%, Gait 35%, Handwriting 20% to the decision"
 - Confidence interval or per-subject breakdown to show variability
 
 **4. Embedding Visualizations (t-SNE / UMAP)**
+
 - Generate t-SNE/UMAP of the 70D fused feature space
 - Color by true class (HC/PD)
 - Overlay misclassified samples as X markers
 - Useful for understanding cluster quality and separability
 
 **5. Confusion Matrix + Explainability Heatmap**
+
 - Standard confusion matrix
 - For each misclassified sample, attach a feature importance annotation
 - Helps debug: "Why was this HC predicted as PD? Speech was borderline, gait was strong PD..."
@@ -172,22 +196,26 @@ Use **consistent, robust methods** across modalities to enable direct comparison
 ## Implementation Roadmap
 
 ### Phase 1: Unimodal XAI (per modality)
+
 - [ ] **Speech**: `SmoothGradCAMpp` notebook in `02_unimodal/01_speech/`
 - [ ] **Handwriting**: `SmoothGradCAMpp` + optional Integrated Gradients in `02_unimodal/02_handwriting/`
 - [ ] **Gait**: SHAP + optional temporal saliency in `02_unimodal/03_gait/`
 
 ### Phase 2: Bimodal XAI
+
 - [ ] Modality ablation script in `03_bimodal/`
 - [ ] Grouped SHAP templates in `03_bimodal/` (reuse across all bimodal pairs)
 - [ ] Consistency checking notebook
 
 ### Phase 3: Trimodal XAI
+
 - [ ] Integrated analysis notebook in `04_trimodal/analysis.ipynb`
 - [ ] Global SHAP on 70D fused vector
 - [ ] Modality contribution summary bar chart
 - [ ] t-SNE/UMAP plots with class/error overlays
 
 ### Phase 4: Inference & Dashboard
+
 - [ ] Shared XAI visualization module in `05_inference/xai_visualizations.py`
 - [ ] Streamlit dashboard integration (call visualization functions)
 - [ ] Single-sample and batch inference with XAI outputs

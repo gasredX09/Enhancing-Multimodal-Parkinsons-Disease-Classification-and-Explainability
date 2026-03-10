@@ -1,0 +1,5 @@
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+/jet/home/aguda1/.conda/envs/chiu-lab/lib/python3.10/site-packages/torch/nn/modules/conv.py:306: UserWarning: Applied workaround for CuDNN issue, install nvrtc.so (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:80.)
+  return F.conv1d(input, weight, bias, self.stride,

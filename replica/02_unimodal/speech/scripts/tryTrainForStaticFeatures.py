@@ -39,25 +39,25 @@ def read_and_label(control_tsv, patient_tsv, task=None, id_col="participant_id",
     df_c["label"] = 0
     df_p["label"] = 1
 
-    # 统一列：取交集，避免两边列不一致导致 concat 出很多 NaN
+    # Align different columns
     common_cols = sorted(set(df_c.columns).intersection(set(df_p.columns)))
     df_c = df_c[common_cols]
     df_p = df_p[common_cols]
 
     df = pd.concat([df_c, df_p], ignore_index=True)
 
-    # 可选：按 task 过滤
+    # Filter by acoustic task (optional)
     if task is not None:
         if task_col not in df.columns:
-            raise ValueError(f"找不到 task 列 {task_col}，实际列名示例：{list(df.columns)[:30]}")
+            raise ValueError(f"cannot find task column {task_col}，actual column：{list(df.columns)[:30]}")
         df[task_col] = df[task_col].astype(str).str.strip()
         df = df[df[task_col] == task].copy()
 
-    # 基本QC：每个 subject 只有一条录音 -> participant_id 应唯一
+    # QC: ensure no duplicate participant in patient and health
     if id_col in df.columns:
         n_dup = df.duplicated(subset=[id_col]).sum()
         if n_dup > 0:
-            print(f"[WARN] {id_col} 出现重复：{n_dup} 行（如果确实每人一条录音，这里需要先去重/查原因）")
+            print(f"[WARN] {id_col} duplicate：{n_dup} row（check your dataset）")
 
     return df
 
@@ -184,7 +184,7 @@ def evaluate(X, y, models, n_splits=5):
             model.fit(Xtr, ytr)
             p = proba(model, Xte)
 
-            # 阈值0.5（如需最佳阈值可再做）
+            # threshold 0.5
             yhat = (p >= 0.5).astype(int)
 
             aucs.append(roc_auc_score(yte, p))

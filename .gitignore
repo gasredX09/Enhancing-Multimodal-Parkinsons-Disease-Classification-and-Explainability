@@ -14,6 +14,21 @@ venv/
 # Data and outputs
 replica/data/
 replica/outputs/
+*/data/
+**/data/
+**/outputs/
+**/datasets/
+**/*_dataset/
+**/*Dataset/
+*.csv
+*.parquet
+*.xls
+*.xlsx
+*.h5
+*.npz
+*.npy
+*.svc
+*.txt
 
 # Archives and large artifacts
 *.zip

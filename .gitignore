@@ -1,42 +1,32 @@
 .DS_Store
+
+# Python cache/build
 __pycache__/
 *.py[cod]
 *.so
 *.egg-info/
-.ipynb_checkpoints/
-.vscode/
-.idea/
+build/
+dist/
+
+# Local environments
 .env
 .venv/
 venv/
 .conda/
 
-# Data and outputs
-replica/data/
-replica/outputs/
-*/data/
-**/data/
-**/outputs/
-**/datasets/
-**/*_dataset/
-**/*Dataset/
-*.csv
-*.parquet
-*.xls
-*.xlsx
-*.h5
-*.npz
-*.npy
-*.svc
-*.txt
+# Editor metadata
+.vscode/
+.idea/
 
-# Archives and large artifacts
-*.zip
-*.tar
-*.tar.gz
-*.7z
+# Jupyter
+.ipynb_checkpoints/
 
-# Models and arrays
+# Runtime logs
+*.log
+*.out
+*.err
+
+# Training artifacts
 *.pt
 *.pth
 *.pkl
@@ -44,5 +34,12 @@ replica/outputs/
 *.npy
 *.npz
 
-# Logs
-*.log
+# Large compressed packages
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Speech model run folders
+src/unimodal/speech/scripts/catboost_info/
+

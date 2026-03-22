@@ -7,7 +7,7 @@ Thanks for helping with the replication work.
 1. Create a branch for your work.
 2. Keep changes focused and small.
 3. Update docs if you change behavior or assumptions.
-4. Share results in `replica/outputs/` (do not commit large data).
+4. Share results in `project/replica/outputs/` (do not commit large data).
 
 ## Style
 

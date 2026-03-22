@@ -1,0 +1,751 @@
+Job started at: Sun Mar  8 14:34:14 EDT 2026
+Job ID: 37912764
+Running on node: v019.ib.bridges2.psc.edu
+Working directory: /ocean/projects/med260006p/shared/biomedAI/project/replica/02_unimodal/03_gait
+
+GPU Information:
+Sun Mar  8 14:34:15 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-32GB           On  |   00000000:89:00.0 Off |                    0 |
+| N/A   28C    P0             40W /  300W |       1MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+PyTorch version: 2.1.0+cu118
+CUDA available: True
+CUDA version: 11.8
+Device: Tesla V100-SXM2-32GB
+
+Starting training...
+Using device: cuda
+Output directory: /ocean/projects/med260006p/shared/biomedAI/project/replica/outputs/unimodal_gait
+============================================================
+GAIT-BASED PARKINSON'S DISEASE CLASSIFICATION
+============================================================
+
+1. Loading labels...
+✓ Loaded with latin-1 encoding
+Loaded 41 subject labels
+Columns: ['ID', 'Age', 'Weight (kg)', 'Height (m)', 'Gender', 'Disease duration (years)', 'Handedness', 'More affected side', 'L-Dopa equivalent units (mg\x95day-1)', 'sessions #']
+Label distribution: Mild PD (H&Y≤2)=6, Moderate/Severe PD (H&Y>2)=29
+
+2. Loading gait data...
+Found 106 gait files
+
+✓ Loaded 11431 windows from 35 subjects
+✗ Failed to load 0 files
+
+Data shape: (11431, 6, 200)
+Labels: Mild PD=1655, Moderate/Severe PD=9776
+Number of channels: 6
+
+3. Normalizing data...
+Saved scaler to /ocean/projects/med260006p/shared/biomedAI/project/replica/outputs/unimodal_gait/scaler.pkl
+
+4. Starting 5-fold cross-validation...
+
+============================================================
+FOLD 1/5
+============================================================
+Train: 9018 samples (Mild=1300, Moderate/Severe=7718)
+Val: 2413 samples (Mild=355, Moderate/Severe=2058)
+Class weights: Mild PD=3.4685, Moderate/Severe PD=0.5842
+
+Epoch 1/100
+Train Loss: 0.4816, Train Acc: 0.7685
+Val Loss: 0.8518, Val Acc: 0.7998, LR: 0.001000
+✓ Best model saved (Val Acc: 0.7998)
+
+Epoch 2/100
+Train Loss: 0.3471, Train Acc: 0.8591
+Val Loss: 1.1500, Val Acc: 0.7994, LR: 0.001000
+
+Epoch 3/100
+Train Loss: 0.2820, Train Acc: 0.8890
+Val Loss: 1.1807, Val Acc: 0.7489, LR: 0.001000
+
+Epoch 4/100
+Train Loss: 0.2296, Train Acc: 0.9143
+Val Loss: 1.3620, Val Acc: 0.7775, LR: 0.001000
+
+Epoch 5/100
+Train Loss: 0.1935, Train Acc: 0.9266
+Val Loss: 1.5552, Val Acc: 0.7493, LR: 0.001000
+
+Epoch 6/100
+Train Loss: 0.1737, Train Acc: 0.9376
+Val Loss: 1.7963, Val Acc: 0.8073, LR: 0.001000
+✓ Best model saved (Val Acc: 0.8073)
+
+Epoch 7/100
+Epoch 00007: reducing learning rate of group 0 to 5.0000e-04.
+Train Loss: 0.1567, Train Acc: 0.9365
+Val Loss: 2.8126, Val Acc: 0.7824, LR: 0.001000
+
+Epoch 8/100
+Train Loss: 0.1170, Train Acc: 0.9573
+Val Loss: 2.0166, Val Acc: 0.8193, LR: 0.000500
+✓ Best model saved (Val Acc: 0.8193)
+
+Epoch 9/100
+Train Loss: 0.1092, Train Acc: 0.9630
+Val Loss: 2.9385, Val Acc: 0.8185, LR: 0.000500
+
+Epoch 10/100
+Train Loss: 0.1037, Train Acc: 0.9601
+Val Loss: 2.5778, Val Acc: 0.8210, LR: 0.000500
+✓ Best model saved (Val Acc: 0.8210)
+
+Epoch 11/100
+Train Loss: 0.1013, Train Acc: 0.9625
+Val Loss: 2.9943, Val Acc: 0.8264, LR: 0.000500
+✓ Best model saved (Val Acc: 0.8264)
+
+Epoch 12/100
+Train Loss: 0.0948, Train Acc: 0.9711
+Val Loss: 3.8895, Val Acc: 0.8284, LR: 0.000500
+✓ Best model saved (Val Acc: 0.8284)
+
+Epoch 13/100
+Epoch 00013: reducing learning rate of group 0 to 2.5000e-04.
+Train Loss: 0.1015, Train Acc: 0.9661
+Val Loss: 1.7702, Val Acc: 0.8230, LR: 0.000500
+
+Epoch 14/100
+Train Loss: 0.0800, Train Acc: 0.9737
+Val Loss: 2.6262, Val Acc: 0.8541, LR: 0.000250
+✓ Best model saved (Val Acc: 0.8541)
+
+Epoch 15/100
+Train Loss: 0.0811, Train Acc: 0.9748
+Val Loss: 3.0121, Val Acc: 0.8388, LR: 0.000250
+
+Epoch 16/100
+Train Loss: 0.0757, Train Acc: 0.9785
+Val Loss: 2.8690, Val Acc: 0.8330, LR: 0.000250
+
+Epoch 17/100
+Train Loss: 0.0712, Train Acc: 0.9802
+Val Loss: 3.9654, Val Acc: 0.8442, LR: 0.000250
+
+Epoch 18/100
+Train Loss: 0.0687, Train Acc: 0.9797
+Val Loss: 3.2725, Val Acc: 0.8483, LR: 0.000250
+
+Epoch 19/100
+Epoch 00019: reducing learning rate of group 0 to 1.2500e-04.
+Train Loss: 0.0770, Train Acc: 0.9786
+Val Loss: 3.2276, Val Acc: 0.8521, LR: 0.000250
+
+Epoch 20/100
+Train Loss: 0.0636, Train Acc: 0.9821
+Val Loss: 3.2354, Val Acc: 0.8483, LR: 0.000125
+
+Epoch 21/100
+Train Loss: 0.0552, Train Acc: 0.9829
+Val Loss: 3.6697, Val Acc: 0.8508, LR: 0.000125
+
+Epoch 22/100
+Train Loss: 0.0522, Train Acc: 0.9844
+Val Loss: 3.7893, Val Acc: 0.8479, LR: 0.000125
+
+Epoch 23/100
+Train Loss: 0.0552, Train Acc: 0.9849
+Val Loss: 3.4288, Val Acc: 0.8537, LR: 0.000125
+
+Epoch 24/100
+Train Loss: 0.0583, Train Acc: 0.9833
+Val Loss: 3.1943, Val Acc: 0.8525, LR: 0.000125
+
+Epoch 25/100
+Epoch 00025: reducing learning rate of group 0 to 6.2500e-05.
+Train Loss: 0.0565, Train Acc: 0.9835
+Val Loss: 3.1291, Val Acc: 0.8558, LR: 0.000125
+✓ Best model saved (Val Acc: 0.8558)
+
+Epoch 26/100
+Train Loss: 0.0522, Train Acc: 0.9846
+Val Loss: 3.2819, Val Acc: 0.8462, LR: 0.000063
+
+Epoch 27/100
+Train Loss: 0.0572, Train Acc: 0.9864
+Val Loss: 3.6844, Val Acc: 0.8529, LR: 0.000063
+
+Epoch 28/100
+Train Loss: 0.0471, Train Acc: 0.9866
+Val Loss: 3.6353, Val Acc: 0.8479, LR: 0.000063
+
+Epoch 29/100
+Train Loss: 0.0476, Train Acc: 0.9871
+Val Loss: 3.5449, Val Acc: 0.8442, LR: 0.000063
+
+Epoch 30/100
+Train Loss: 0.0466, Train Acc: 0.9878
+Val Loss: 3.6851, Val Acc: 0.8446, LR: 0.000063
+
+Epoch 31/100
+Epoch 00031: reducing learning rate of group 0 to 3.1250e-05.
+Train Loss: 0.0518, Train Acc: 0.9858
+Val Loss: 3.3726, Val Acc: 0.8429, LR: 0.000063
+
+Epoch 32/100
+Train Loss: 0.0548, Train Acc: 0.9860
+Val Loss: 3.7417, Val Acc: 0.8537, LR: 0.000031
+
+Epoch 33/100
+Train Loss: 0.0445, Train Acc: 0.9886
+Val Loss: 3.9835, Val Acc: 0.8521, LR: 0.000031
+
+Epoch 34/100
+Train Loss: 0.0387, Train Acc: 0.9898
+Val Loss: 3.7283, Val Acc: 0.8433, LR: 0.000031
+
+Epoch 35/100
+Train Loss: 0.0458, Train Acc: 0.9881
+Val Loss: 3.9425, Val Acc: 0.8504, LR: 0.000031
+
+Epoch 36/100
+Train Loss: 0.0567, Train Acc: 0.9868
+Val Loss: 3.8101, Val Acc: 0.8500, LR: 0.000031
+
+Epoch 37/100
+Epoch 00037: reducing learning rate of group 0 to 1.5625e-05.
+Train Loss: 0.0503, Train Acc: 0.9869
+Val Loss: 3.6979, Val Acc: 0.8450, LR: 0.000031
+
+Epoch 38/100
+Train Loss: 0.0336, Train Acc: 0.9904
+Val Loss: 3.9234, Val Acc: 0.8450, LR: 0.000016
+
+Epoch 39/100
+Train Loss: 0.0525, Train Acc: 0.9880
+Val Loss: 3.6753, Val Acc: 0.8454, LR: 0.000016
+
+Epoch 40/100
+Train Loss: 0.0405, Train Acc: 0.9882
+Val Loss: 3.7212, Val Acc: 0.8492, LR: 0.000016
+
+Early stopping at epoch 40
+
+Best Val Acc: 0.8558 at epoch 25
+
+Final evaluation on validation set...
+
+Metrics:
+  Accuracy:  0.8558
+  Precision: 0.8734
+  Recall:    0.9718
+  F1 Score:  0.9200
+  ROC AUC:   0.5062
+
+Classification Report:
+                    precision    recall  f1-score   support
+
+           Mild PD       0.53      0.18      0.27       355
+Moderate/Severe PD       0.87      0.97      0.92      2058
+
+          accuracy                           0.86      2413
+         macro avg       0.70      0.58      0.60      2413
+      weighted avg       0.82      0.86      0.82      2413
+
+
+============================================================
+FOLD 2/5
+============================================================
+Train: 8976 samples (Mild=1145, Moderate/Severe=7831)
+Val: 2455 samples (Mild=510, Moderate/Severe=1945)
+Class weights: Mild PD=3.9197, Moderate/Severe PD=0.5731
+
+Epoch 1/100
+Train Loss: 0.4628, Train Acc: 0.8104
+Val Loss: 2.6740, Val Acc: 0.5136, LR: 0.001000
+✓ Best model saved (Val Acc: 0.5136)
+
+Epoch 2/100
+Train Loss: 0.2998, Train Acc: 0.8951
+Val Loss: 4.5635, Val Acc: 0.7601, LR: 0.001000
+✓ Best model saved (Val Acc: 0.7601)
+
+Epoch 3/100
+Train Loss: 0.2500, Train Acc: 0.9181
+Val Loss: 2.5528, Val Acc: 0.6493, LR: 0.001000
+
+Epoch 4/100
+Train Loss: 0.2166, Train Acc: 0.9364
+Val Loss: 2.8076, Val Acc: 0.7112, LR: 0.001000
+
+Epoch 5/100
+Train Loss: 0.2069, Train Acc: 0.9430
+Val Loss: 1.6451, Val Acc: 0.5397, LR: 0.001000
+
+Epoch 6/100
+Train Loss: 0.1830, Train Acc: 0.9436
+Val Loss: 2.7832, Val Acc: 0.6802, LR: 0.001000
+
+Epoch 7/100
+Train Loss: 0.1655, Train Acc: 0.9472
+Val Loss: 3.3890, Val Acc: 0.6464, LR: 0.001000
+
+Epoch 8/100
+Train Loss: 0.1540, Train Acc: 0.9479
+Val Loss: 4.2238, Val Acc: 0.6949, LR: 0.001000
+
+Epoch 9/100
+Train Loss: 0.1457, Train Acc: 0.9613
+Val Loss: 4.0278, Val Acc: 0.7324, LR: 0.001000
+
+Epoch 10/100
+Train Loss: 0.1416, Train Acc: 0.9559
+Val Loss: 5.2104, Val Acc: 0.6908, LR: 0.001000
+
+Epoch 11/100
+Epoch 00011: reducing learning rate of group 0 to 5.0000e-04.
+Train Loss: 0.1171, Train Acc: 0.9630
+Val Loss: 3.1673, Val Acc: 0.7324, LR: 0.001000
+
+Epoch 12/100
+Train Loss: 0.0810, Train Acc: 0.9704
+Val Loss: 5.0585, Val Acc: 0.6892, LR: 0.000500
+
+Epoch 13/100
+Train Loss: 0.0847, Train Acc: 0.9758
+Val Loss: 3.2715, Val Acc: 0.7234, LR: 0.000500
+
+Epoch 14/100
+Train Loss: 0.0744, Train Acc: 0.9786
+Val Loss: 7.8204, Val Acc: 0.7422, LR: 0.000500
+
+Epoch 15/100
+Train Loss: 0.0881, Train Acc: 0.9778
+Val Loss: 5.0851, Val Acc: 0.7438, LR: 0.000500
+
+Epoch 16/100
+Train Loss: 0.0722, Train Acc: 0.9789
+Val Loss: 6.6238, Val Acc: 0.7324, LR: 0.000500
+
+Epoch 17/100
+Epoch 00017: reducing learning rate of group 0 to 2.5000e-04.
+Train Loss: 0.0667, Train Acc: 0.9816
+Val Loss: 8.2931, Val Acc: 0.7177, LR: 0.000500
+
+Early stopping at epoch 17
+
+Best Val Acc: 0.7601 at epoch 2
+
+Final evaluation on validation set...
+
+Metrics:
+  Accuracy:  0.7601
+  Precision: 0.7854
+  Recall:    0.9594
+  F1 Score:  0.8637
+  ROC AUC:   0.2286
+
+Classification Report:
+                    precision    recall  f1-score   support
+
+           Mild PD       0.00      0.00      0.00       510
+Moderate/Severe PD       0.79      0.96      0.86      1945
+
+          accuracy                           0.76      2455
+         macro avg       0.39      0.48      0.43      2455
+      weighted avg       0.62      0.76      0.68      2455
+
+
+============================================================
+FOLD 3/5
+============================================================
+Train: 9510 samples (Mild=1655, Moderate/Severe=7855)
+Val: 1921 samples (Mild=0, Moderate/Severe=1921)
+Class weights: Mild PD=2.8731, Moderate/Severe PD=0.6053
+
+Epoch 1/100
+Train Loss: 0.4834, Train Acc: 0.7988
+Val Loss: 0.4715, Val Acc: 0.7923, LR: 0.001000
+✓ Best model saved (Val Acc: 0.7923)
+
+Epoch 2/100
+Train Loss: 0.3168, Train Acc: 0.8885
+Val Loss: 1.0378, Val Acc: 0.7236, LR: 0.001000
+
+Epoch 3/100
+Train Loss: 0.2475, Train Acc: 0.9140
+Val Loss: 1.5137, Val Acc: 0.6757, LR: 0.001000
+
+Epoch 4/100
+Train Loss: 0.2090, Train Acc: 0.9334
+Val Loss: 0.5628, Val Acc: 0.8516, LR: 0.001000
+✓ Best model saved (Val Acc: 0.8516)
+
+Epoch 5/100
+Train Loss: 0.1732, Train Acc: 0.9478
+Val Loss: 0.6273, Val Acc: 0.8610, LR: 0.001000
+✓ Best model saved (Val Acc: 0.8610)
+
+Epoch 6/100
+Train Loss: 0.1624, Train Acc: 0.9568
+Val Loss: 2.1232, Val Acc: 0.7366, LR: 0.001000
+
+Epoch 7/100
+Epoch 00007: reducing learning rate of group 0 to 5.0000e-04.
+Train Loss: 0.1526, Train Acc: 0.9557
+Val Loss: 0.9895, Val Acc: 0.7876, LR: 0.001000
+
+Epoch 8/100
+Train Loss: 0.0948, Train Acc: 0.9722
+Val Loss: 1.0353, Val Acc: 0.8261, LR: 0.000500
+
+Epoch 9/100
+Train Loss: 0.0934, Train Acc: 0.9748
+Val Loss: 1.6073, Val Acc: 0.7590, LR: 0.000500
+
+Epoch 10/100
+Train Loss: 0.0897, Train Acc: 0.9774
+Val Loss: 1.5154, Val Acc: 0.8053, LR: 0.000500
+
+Epoch 11/100
+Train Loss: 0.0935, Train Acc: 0.9755
+Val Loss: 1.4593, Val Acc: 0.7574, LR: 0.000500
+
+Epoch 12/100
+Train Loss: 0.0852, Train Acc: 0.9757
+Val Loss: 1.8245, Val Acc: 0.7782, LR: 0.000500
+
+Epoch 13/100
+Epoch 00013: reducing learning rate of group 0 to 2.5000e-04.
+Train Loss: 0.0780, Train Acc: 0.9796
+Val Loss: 1.8820, Val Acc: 0.7819, LR: 0.000500
+
+Epoch 14/100
+Train Loss: 0.0663, Train Acc: 0.9802
+Val Loss: 1.6865, Val Acc: 0.8043, LR: 0.000250
+
+Epoch 15/100
+Train Loss: 0.0634, Train Acc: 0.9819
+Val Loss: 2.7950, Val Acc: 0.7288, LR: 0.000250
+
+Epoch 16/100
+Train Loss: 0.0605, Train Acc: 0.9841
+Val Loss: 1.3052, Val Acc: 0.8360, LR: 0.000250
+
+Epoch 17/100
+Train Loss: 0.0499, Train Acc: 0.9842
+Val Loss: 2.0808, Val Acc: 0.7808, LR: 0.000250
+
+Epoch 18/100
+Train Loss: 0.0495, Train Acc: 0.9852
+Val Loss: 1.8697, Val Acc: 0.7887, LR: 0.000250
+
+Epoch 19/100
+Epoch 00019: reducing learning rate of group 0 to 1.2500e-04.
+Train Loss: 0.0544, Train Acc: 0.9848
+Val Loss: 3.6168, Val Acc: 0.7272, LR: 0.000250
+
+Epoch 20/100
+Train Loss: 0.0387, Train Acc: 0.9879
+Val Loss: 3.1998, Val Acc: 0.7231, LR: 0.000125
+
+Early stopping at epoch 20
+
+Best Val Acc: 0.8610 at epoch 5
+
+Final evaluation on validation set...
+
+Metrics:
+  Accuracy:  0.8610
+  Precision: 1.0000
+  Recall:    0.8610
+  F1 Score:  0.9253
+  ROC AUC:   nan
+
+Classification Report:
+                    precision    recall  f1-score   support
+
+           Mild PD       0.00      0.00      0.00         0
+Moderate/Severe PD       1.00      0.86      0.93      1921
+
+          accuracy                           0.86      1921
+         macro avg       0.50      0.43      0.46      1921
+      weighted avg       1.00      0.86      0.93      1921
+
+
+============================================================
+FOLD 4/5
+============================================================
+Train: 9344 samples (Mild=1655, Moderate/Severe=7689)
+Val: 2087 samples (Mild=0, Moderate/Severe=2087)
+Class weights: Mild PD=2.8230, Moderate/Severe PD=0.6076
+
+Epoch 1/100
+Train Loss: 0.4226, Train Acc: 0.8159
+Val Loss: 1.1675, Val Acc: 0.5304, LR: 0.001000
+✓ Best model saved (Val Acc: 0.5304)
+
+Epoch 2/100
+Train Loss: 0.2789, Train Acc: 0.9079
+Val Loss: 1.0843, Val Acc: 0.6838, LR: 0.001000
+✓ Best model saved (Val Acc: 0.6838)
+
+Epoch 3/100
+Train Loss: 0.2295, Train Acc: 0.9217
+Val Loss: 2.6559, Val Acc: 0.5477, LR: 0.001000
+
+Epoch 4/100
+Train Loss: 0.1986, Train Acc: 0.9395
+Val Loss: 2.4422, Val Acc: 0.5721, LR: 0.001000
+
+Epoch 5/100
+Train Loss: 0.1715, Train Acc: 0.9483
+Val Loss: 1.6989, Val Acc: 0.6847, LR: 0.001000
+✓ Best model saved (Val Acc: 0.6847)
+
+Epoch 6/100
+Train Loss: 0.1477, Train Acc: 0.9592
+Val Loss: 2.1565, Val Acc: 0.5745, LR: 0.001000
+
+Epoch 7/100
+Train Loss: 0.1335, Train Acc: 0.9628
+Val Loss: 1.8156, Val Acc: 0.6862, LR: 0.001000
+✓ Best model saved (Val Acc: 0.6862)
+
+Epoch 8/100
+Epoch 00008: reducing learning rate of group 0 to 5.0000e-04.
+Train Loss: 0.1249, Train Acc: 0.9655
+Val Loss: 4.6386, Val Acc: 0.4701, LR: 0.001000
+
+Epoch 9/100
+Train Loss: 0.0888, Train Acc: 0.9753
+Val Loss: 3.7277, Val Acc: 0.5803, LR: 0.000500
+
+Epoch 10/100
+Train Loss: 0.0805, Train Acc: 0.9768
+Val Loss: 2.7971, Val Acc: 0.6967, LR: 0.000500
+✓ Best model saved (Val Acc: 0.6967)
+
+Epoch 11/100
+Train Loss: 0.0763, Train Acc: 0.9769
+Val Loss: 3.7473, Val Acc: 0.6176, LR: 0.000500
+
+Epoch 12/100
+Train Loss: 0.0613, Train Acc: 0.9799
+Val Loss: 2.9923, Val Acc: 0.6670, LR: 0.000500
+
+Epoch 13/100
+Train Loss: 0.0660, Train Acc: 0.9798
+Val Loss: 4.0903, Val Acc: 0.5783, LR: 0.000500
+
+Epoch 14/100
+Epoch 00014: reducing learning rate of group 0 to 2.5000e-04.
+Train Loss: 0.0669, Train Acc: 0.9800
+Val Loss: 3.3772, Val Acc: 0.6210, LR: 0.000500
+
+Epoch 15/100
+Train Loss: 0.0474, Train Acc: 0.9816
+Val Loss: 3.8570, Val Acc: 0.6248, LR: 0.000250
+
+Epoch 16/100
+Train Loss: 0.0518, Train Acc: 0.9838
+Val Loss: 3.9342, Val Acc: 0.6037, LR: 0.000250
+
+Epoch 17/100
+Train Loss: 0.0459, Train Acc: 0.9836
+Val Loss: 3.8600, Val Acc: 0.6100, LR: 0.000250
+
+Epoch 18/100
+Train Loss: 0.0433, Train Acc: 0.9854
+Val Loss: 4.2437, Val Acc: 0.6248, LR: 0.000250
+
+Epoch 19/100
+Train Loss: 0.0363, Train Acc: 0.9872
+Val Loss: 3.6467, Val Acc: 0.6914, LR: 0.000250
+
+Epoch 20/100
+Epoch 00020: reducing learning rate of group 0 to 1.2500e-04.
+Train Loss: 0.0536, Train Acc: 0.9858
+Val Loss: 3.4245, Val Acc: 0.6929, LR: 0.000250
+
+Epoch 21/100
+Train Loss: 0.0306, Train Acc: 0.9894
+Val Loss: 3.4712, Val Acc: 0.6632, LR: 0.000125
+
+Epoch 22/100
+Train Loss: 0.0326, Train Acc: 0.9896
+Val Loss: 4.1059, Val Acc: 0.6622, LR: 0.000125
+
+Epoch 23/100
+Train Loss: 0.0339, Train Acc: 0.9884
+Val Loss: 4.1491, Val Acc: 0.6900, LR: 0.000125
+
+Epoch 24/100
+Train Loss: 0.0292, Train Acc: 0.9890
+Val Loss: 5.1767, Val Acc: 0.6287, LR: 0.000125
+
+Epoch 25/100
+Train Loss: 0.0319, Train Acc: 0.9892
+Val Loss: 4.2106, Val Acc: 0.6382, LR: 0.000125
+
+Early stopping at epoch 25
+
+Best Val Acc: 0.6967 at epoch 10
+
+Final evaluation on validation set...
+
+Metrics:
+  Accuracy:  0.6967
+  Precision: 1.0000
+  Recall:    0.6967
+  F1 Score:  0.8212
+  ROC AUC:   nan
+
+Classification Report:
+                    precision    recall  f1-score   support
+
+           Mild PD       0.00      0.00      0.00         0
+Moderate/Severe PD       1.00      0.70      0.82      2087
+
+          accuracy                           0.70      2087
+         macro avg       0.50      0.35      0.41      2087
+      weighted avg       1.00      0.70      0.82      2087
+
+
+============================================================
+FOLD 5/5
+============================================================
+Train: 8876 samples (Mild=865, Moderate/Severe=8011)
+Val: 2555 samples (Mild=790, Moderate/Severe=1765)
+Class weights: Mild PD=5.1306, Moderate/Severe PD=0.5540
+
+Epoch 1/100
+Train Loss: 0.3029, Train Acc: 0.9085
+Val Loss: 3.6202, Val Acc: 0.5628, LR: 0.001000
+✓ Best model saved (Val Acc: 0.5628)
+
+Epoch 2/100
+Train Loss: 0.1566, Train Acc: 0.9669
+Val Loss: 4.0591, Val Acc: 0.6521, LR: 0.001000
+✓ Best model saved (Val Acc: 0.6521)
+
+Epoch 3/100
+Train Loss: 0.1175, Train Acc: 0.9749
+Val Loss: 3.6432, Val Acc: 0.6266, LR: 0.001000
+
+Epoch 4/100
+Train Loss: 0.1211, Train Acc: 0.9757
+Val Loss: 4.2738, Val Acc: 0.5237, LR: 0.001000
+
+Epoch 5/100
+Train Loss: 0.0766, Train Acc: 0.9797
+Val Loss: 6.9740, Val Acc: 0.5863, LR: 0.001000
+
+Epoch 6/100
+Train Loss: 0.0768, Train Acc: 0.9815
+Val Loss: 4.7471, Val Acc: 0.6356, LR: 0.001000
+
+Epoch 7/100
+Epoch 00007: reducing learning rate of group 0 to 5.0000e-04.
+Train Loss: 0.0612, Train Acc: 0.9829
+Val Loss: 6.8657, Val Acc: 0.6102, LR: 0.001000
+
+Epoch 8/100
+Train Loss: 0.0598, Train Acc: 0.9860
+Val Loss: 7.8736, Val Acc: 0.6047, LR: 0.000500
+
+Epoch 9/100
+Train Loss: 0.0482, Train Acc: 0.9875
+Val Loss: 5.9328, Val Acc: 0.6082, LR: 0.000500
+
+Epoch 10/100
+Train Loss: 0.0513, Train Acc: 0.9847
+Val Loss: 8.0414, Val Acc: 0.6411, LR: 0.000500
+
+Epoch 11/100
+Train Loss: 0.0518, Train Acc: 0.9865
+Val Loss: 7.4784, Val Acc: 0.6442, LR: 0.000500
+
+Epoch 12/100
+Train Loss: 0.0462, Train Acc: 0.9863
+Val Loss: 5.8487, Val Acc: 0.6481, LR: 0.000500
+
+Epoch 13/100
+Epoch 00013: reducing learning rate of group 0 to 2.5000e-04.
+Train Loss: 0.0418, Train Acc: 0.9877
+Val Loss: 7.9509, Val Acc: 0.6102, LR: 0.000500
+
+Epoch 14/100
+Train Loss: 0.0355, Train Acc: 0.9888
+Val Loss: 7.1997, Val Acc: 0.6110, LR: 0.000250
+
+Epoch 15/100
+Train Loss: 0.0365, Train Acc: 0.9868
+Val Loss: 8.4655, Val Acc: 0.6219, LR: 0.000250
+
+Epoch 16/100
+Train Loss: 0.0308, Train Acc: 0.9896
+Val Loss: 9.6445, Val Acc: 0.5722, LR: 0.000250
+
+Epoch 17/100
+Train Loss: 0.0454, Train Acc: 0.9896
+Val Loss: 6.6256, Val Acc: 0.6027, LR: 0.000250
+
+Early stopping at epoch 17
+
+Best Val Acc: 0.6521 at epoch 2
+
+Final evaluation on validation set...
+
+Metrics:
+  Accuracy:  0.6521
+  Precision: 0.6875
+  Recall:    0.9099
+  F1 Score:  0.7832
+  ROC AUC:   0.3678
+
+Classification Report:
+                    precision    recall  f1-score   support
+
+           Mild PD       0.27      0.08      0.12       790
+Moderate/Severe PD       0.69      0.91      0.78      1765
+
+          accuracy                           0.65      2555
+         macro avg       0.48      0.49      0.45      2555
+      weighted avg       0.56      0.65      0.58      2555
+
+
+============================================================
+CROSS-VALIDATION RESULTS
+============================================================
+
+Per-fold results:
+ fold  accuracy  precision   recall       f1      auc  best_epoch
+    1  0.855781   0.873362 0.971817 0.919963 0.506221          25
+    2  0.760081   0.785354 0.959383 0.863689 0.228597           2
+    3  0.861010   1.000000 0.861010 0.925315      NaN           5
+    4  0.696694   1.000000 0.696694 0.821237      NaN          10
+    5  0.652055   0.687500 0.909915 0.783224 0.367815           2
+
+Mean ± Std:
+  Accuracy  : 0.7651 ± 0.0934
+  Precision : 0.8692 ± 0.1363
+  Recall    : 0.8798 ± 0.1113
+  F1        : 0.8627 ± 0.0617
+  Auc       : 0.3675 ± 0.1388
+
+✓ Results saved to /ocean/projects/med260006p/shared/biomedAI/project/replica/outputs/unimodal_gait
+
+Training complete!
+
+Job finished at: Sun Mar  8 19:16:19 EDT 2026

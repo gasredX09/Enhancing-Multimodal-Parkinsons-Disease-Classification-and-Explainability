@@ -1,27 +1,32 @@
 .DS_Store
+
+# Python cache/build
 __pycache__/
 *.py[cod]
 *.so
 *.egg-info/
-.ipynb_checkpoints/
-.vscode/
-.idea/
+build/
+dist/
+
+# Local environments
 .env
 .venv/
 venv/
 .conda/
 
-# Data and outputs
-replica/data/
-replica/outputs/
+# Editor metadata
+.vscode/
+.idea/
 
-# Archives and large artifacts
-*.zip
-*.tar
-*.tar.gz
-*.7z
+# Jupyter
+.ipynb_checkpoints/
 
-# Models and arrays
+# Runtime logs
+*.log
+*.out
+*.err
+
+# Training artifacts
 *.pt
 *.pth
 *.pkl
@@ -29,5 +34,20 @@ replica/outputs/
 *.npy
 *.npz
 
-# Logs
-*.log
+# Large compressed packages
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Speech model run folders
+src/unimodal/speech/scripts/catboost_info/
+
+# Tree-model scratch folders (can appear at project root)
+catboost_info/
+
+# Handwriting generated artifacts
+outputs/unimodal_handwriting/svm_embeddings/
+outputs/unimodal_handwriting/model_benchmark/
+data/handwriting/processed/merged_handwriting_timeseries.csv
+

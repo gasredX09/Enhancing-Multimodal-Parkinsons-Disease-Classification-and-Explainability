@@ -10,6 +10,8 @@ __pycache__/
 .venv/
 venv/
 .conda/
+.pytest_cache/
+.mypy_cache/
 
 # Data and outputs
 replica/data/
@@ -31,3 +33,15 @@ replica/outputs/
 
 # Logs
 *.log
+*.out
+*.err
+
+# Scheduler outputs
+slurm-*.out
+
+# Experiment log folders
+logs/
+replica/**/logs/
+
+# Notebook artifacts
+*.nbconvert.ipynb

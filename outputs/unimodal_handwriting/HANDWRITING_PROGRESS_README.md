@@ -71,6 +71,39 @@ Build a reproducible handwriting modeling pipeline for Parkinson classification 
   - RM-shared working account selection
   - logs routed to `logs/slurm/%x-%j.out/.err`
 
+### 2.6 Final model selection pipeline (nested CV + calibration)
+- Script created:
+  - `src/unimodal/handwriting/finalize_handwriting_model.py`
+- SLURM launcher created:
+  - `src/unimodal/handwriting/slurm/finalize_handwriting_model.slurm`
+- Functionality:
+  - Nested CV on top candidate models (`gpc_rbf`, `random_forest`, `lightgbm` if available; fallback to `logreg_elasticnet`)
+  - Hyperparameter tuning in inner CV
+  - Probability calibration via `CalibratedClassifierCV`
+  - Threshold selection targeting configurable recall (default 0.90)
+  - Final artifact export for deployment (`final_handwriting_model.joblib`)
+
+Current run status:
+- Local login-node execution was killed due system limits (exit 137), so execution was moved to SLURM.
+- SLURM finalization job completed:
+  - Job ID: `38145230`
+  - Name: `hw-finalize`
+  - State: `COMPLETED` (exit code `0:0`)
+  - Log files:
+    - `logs/slurm/hw-finalize-38145230.out`
+    - `logs/slurm/hw-finalize-38145230.err` (empty / clean)
+
+Finalization outcome:
+- Selected final model: `lightgbm`
+- Primary metric: `roc_auc`
+- Selected threshold: `0.42` (target recall `0.90`)
+- Best tuned parameters:
+  - `learning_rate=0.1`
+  - `min_child_samples=10`
+  - `n_estimators=150`
+  - `num_leaves=15`
+- Best inner CV AUC: `0.7569`
+
 ## 3) Current Results Snapshot
 
 From recent benchmark run (`hw-bench-full`):
@@ -117,6 +150,21 @@ Per-model subdirectories:
 - `lightgbm/`
 - `catboost/`
 
+### 4.3 Final model outputs (new)
+Directory:
+- `outputs/unimodal_handwriting/final_model`
+
+Expected files after `hw-finalize` completion:
+Generated files (confirmed):
+- `final_model_leaderboard.csv`
+- `all_models_oof_predictions.csv`
+- `final_model_summary.json`
+- `final_handwriting_model.joblib`
+- `final_model_input_table.csv`
+- `<model_name>/nested_cv_fold_metrics.csv`
+- `<model_name>/best_params_per_fold.json`
+- `<model_name>/oof_predictions.csv`
+
 ## 5) Runbook
 
 ### 5.1 Local SVM embeddings
@@ -135,6 +183,10 @@ From project root:
 - `logs/slurm/<job-name>-<job-id>.out`
 - `logs/slurm/<job-name>-<job-id>.err`
 
+### 5.5 Finalize deployable model (SLURM)
+From project root:
+- `sbatch src/unimodal/handwriting/slurm/finalize_handwriting_model.slurm`
+
 ## 6) Recommended Next Steps
 
 1. Perform nested CV for top models (`gpc_rbf`, `random_forest`, `lightgbm`) to reduce selection bias.
@@ -152,3 +204,8 @@ From project root:
   - Fixed RM-shared submission constraints (memory/account) for handwriting SLURM jobs.
   - Fixed benchmark warning/noise issues (LightGBM verbosity + feature-name consistency).
   - Added this handwriting progress README.
+- 2026-03-22 (late):
+  - Added nested-CV finalization pipeline (`finalize_handwriting_model.py`).
+  - Added SLURM launcher for final model selection (`finalize_handwriting_model.slurm`).
+  - Submitted and completed finalization run on RM-shared (`hw-finalize`, job `38145230`).
+  - Final selected model: `lightgbm` with threshold `0.42` for target recall `0.90`.

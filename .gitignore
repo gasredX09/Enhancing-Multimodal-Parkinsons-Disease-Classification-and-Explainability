@@ -43,11 +43,13 @@ venv/
 # Speech model run folders
 src/unimodal/speech/scripts/catboost_info/
 
-# Tree-model scratch folders (can appear at project root)
-catboost_info/
-
 # Handwriting generated artifacts
 outputs/unimodal_handwriting/svm_embeddings/
 outputs/unimodal_handwriting/model_benchmark/
 data/handwriting/processed/merged_handwriting_timeseries.csv
+
+# Only track handwriting data, ignore all other data
+data/*
+!data/handwriting/
+!data/handwriting/**
 

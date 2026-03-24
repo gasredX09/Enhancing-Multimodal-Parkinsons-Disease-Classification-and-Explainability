@@ -1,0 +1,28 @@
+{
+  "best_model": "lightgbm",
+  "primary_metric": "roc_auc",
+  "target_recall": 0.9,
+  "threshold": 0.41999999999999993,
+  "n_samples": 108,
+  "class_counts": {
+    "negative": 36,
+    "positive": 72
+  },
+  "feature_columns": [
+    "mean_speed",
+    "std_speed",
+    "max_speed",
+    "path_length",
+    "pressure_mean",
+    "pressure_std"
+  ],
+  "best_params": {
+    "learning_rate": 0.1,
+    "min_child_samples": 10,
+    "n_estimators": 150,
+    "num_leaves": 15
+  },
+  "best_inner_cv_auc": 0.7569444444444443,
+  "leaderboard_file": "/ocean/projects/med260006p/shared/biomedAI/project/outputs/unimodal_handwriting/final_model/final_model_leaderboard.csv",
+  "artifact_file": "/ocean/projects/med260006p/shared/biomedAI/project/outputs/unimodal_handwriting/final_model/final_handwriting_model.joblib"
+}

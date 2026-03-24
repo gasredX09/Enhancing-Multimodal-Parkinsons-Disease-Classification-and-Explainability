@@ -1,0 +1,8 @@
+                    precision    recall  f1-score   support
+
+           Mild PD       0.00      0.00      0.00       510
+Moderate/Severe PD       0.79      0.96      0.86      1945
+
+          accuracy                           0.76      2455
+         macro avg       0.39      0.48      0.43      2455
+      weighted avg       0.62      0.76      0.68      2455

@@ -1,0 +1,47 @@
+[
+  {
+    "fold": 1,
+    "params": {
+      "learning_rate": 0.03,
+      "min_child_samples": 5,
+      "n_estimators": 150,
+      "num_leaves": 7
+    }
+  },
+  {
+    "fold": 2,
+    "params": {
+      "learning_rate": 0.03,
+      "min_child_samples": 10,
+      "n_estimators": 150,
+      "num_leaves": 7
+    }
+  },
+  {
+    "fold": 3,
+    "params": {
+      "learning_rate": 0.05,
+      "min_child_samples": 5,
+      "n_estimators": 300,
+      "num_leaves": 7
+    }
+  },
+  {
+    "fold": 4,
+    "params": {
+      "learning_rate": 0.03,
+      "min_child_samples": 5,
+      "n_estimators": 150,
+      "num_leaves": 7
+    }
+  },
+  {
+    "fold": 5,
+    "params": {
+      "learning_rate": 0.1,
+      "min_child_samples": 5,
+      "n_estimators": 300,
+      "num_leaves": 15
+    }
+  }
+]

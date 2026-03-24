@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-03-22T21:01:01.993863",
+  "tasks": {
+    "pdfe": {
+      "task": "pdfe_severity",
+      "script": "train_gait.py",
+      "status": "completed",
+      "n_folds": 5,
+      "n_samples": 11431,
+      "n_subjects": 35,
+      "n_channels": 6,
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7651242311445902,
+          "std": 0.09341519058700905
+        },
+        "precision": {
+          "mean": 0.8692431961536766,
+          "std": 0.1362715269746435
+        },
+        "recall": {
+          "mean": 0.8797638110983901,
+          "std": 0.1113423680661806
+        },
+        "f1": {
+          "mean": 0.862685478078442,
+          "std": 0.06171777098468178
+        },
+        "auc": {
+          "mean": 0.3675442713042245,
+          "std": 0.13881234616716245
+        }
+      },
+      "prediction_level": "subject_from_oof_windows",
+      "outputs": {
+        "cv_results_csv": "/ocean/projects/med260006p/shared/biomedAI/project/outputs/unimodal_gait/PDFE_Severity_Classification/cv_results.csv",
+        "predictions_npz": "/ocean/projects/med260006p/shared/biomedAI/project/outputs/unimodal_gait/PDFE_Severity_Classification/predictions.npz",
+        "scaler_pkl": "/ocean/projects/med260006p/shared/biomedAI/project/outputs/unimodal_gait/PDFE_Severity_Classification/scaler.pkl"
+      }
+    },
+    "weargait": {
+      "task": "weargait_embeddings",
+      "script": "train_weargait_embeddings.py",
+      "status": "failed"
+    },
+    "rf": {
+      "task": "rf_baseline",
+      "script": "train_gait_rf.py",
+      "status": "failed"
+    }
+  },
+  "next_step": "Run ensemble_fusion.py to combine task outputs",
+  "status": "some_tasks_failed"
+}

@@ -1,0 +1,20 @@
+{
+  "n_windows": 7550,
+  "n_subjects": 172,
+  "n_channels": 24,
+  "window_sec": 6.0,
+  "target_hz": 100.0,
+  "tasks": [
+    "SelfPace",
+    "HurriedPace",
+    "TUG"
+  ],
+  "embedding_dim": 256,
+  "mean_acc": 0.6407606112867753,
+  "mean_f1": 0.7158113789054166,
+  "mean_auc": 0.6836881814509665,
+  "outputs": {
+    "metrics_csv": "/ocean/projects/med260006p/shared/biomedAI/project/replica/outputs/unimodal_gait/weargait_dl_embeddings/cv_metrics.csv",
+    "embeddings_npz": "/ocean/projects/med260006p/shared/biomedAI/project/replica/outputs/unimodal_gait/weargait_dl_embeddings/weargait_subject_embeddings.npz"
+  }
+}

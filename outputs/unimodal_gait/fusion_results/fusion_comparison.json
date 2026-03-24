@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-03-22T21:01:04.017938",
+  "strategies": {
+    "weighted": {
+      "method": "weighted_average",
+      "accuracy": 0.7714285714285715,
+      "f1": 0.8709677419354839,
+      "roc_auc": 0.442528735632184,
+      "weights": {
+        "pdfe": 1.0
+      }
+    },
+    "stacking": {
+      "method": "stacking",
+      "meta_model_type": "LogisticRegression",
+      "accuracy": 0.8285714285714286,
+      "f1": 0.90625,
+      "roc_auc": 0.5574712643678161
+    },
+    "voting": {
+      "method": "voting",
+      "n_tasks": 1,
+      "accuracy": 0.7714285714285715,
+      "f1": 0.8709677419354839
+    }
+  },
+  "best_strategy": "stacking"
+}

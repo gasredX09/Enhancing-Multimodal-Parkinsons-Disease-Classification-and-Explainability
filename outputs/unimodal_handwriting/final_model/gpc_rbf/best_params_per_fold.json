@@ -1,0 +1,32 @@
+[
+  {
+    "fold": 1,
+    "params": {
+      "model__kernel": "1**2 * RBF(length_scale=0.5)"
+    }
+  },
+  {
+    "fold": 2,
+    "params": {
+      "model__kernel": "1**2 * RBF(length_scale=0.5)"
+    }
+  },
+  {
+    "fold": 3,
+    "params": {
+      "model__kernel": "1**2 * RBF(length_scale=0.5)"
+    }
+  },
+  {
+    "fold": 4,
+    "params": {
+      "model__kernel": "1**2 * RBF(length_scale=0.5)"
+    }
+  },
+  {
+    "fold": 5,
+    "params": {
+      "model__kernel": "1**2 * RBF(length_scale=2)"
+    }
+  }
+]

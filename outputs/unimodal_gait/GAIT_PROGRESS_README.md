@@ -261,3 +261,34 @@ Scripts are configured conservatively to fit those limits and to reduce pending 
 - To inspect partition availability before submit:
   - slurm-tool p
   - sinfo -p GPU-shared
+
+## 11) 2026-03-24 WearGait Separate-Task Update
+
+We are now treating WearGait as three related but distinct tasks instead of forcing a single shared encoder across all tasks.
+
+### New workflow
+- Train `SelfPace`, `HurriedPace`, and `TUG` separately with the same TCN backbone.
+- Save one subject-level embedding file per task under:
+  - `outputs/unimodal_gait/weargait_dl_embeddings/SelfPace`
+  - `outputs/unimodal_gait/weargait_dl_embeddings/HurriedPace`
+  - `outputs/unimodal_gait/weargait_dl_embeddings/TUG`
+- Concatenate those subject-level embeddings with:
+  - `src/unimodal/gait/concat_weargait_task_embeddings.py`
+- Save the fusion-ready gait embedding artifact to:
+  - `outputs/unimodal_gait/weargait_concat_embeddings/weargait_concat_subject_embeddings.npz`
+
+### Why this change
+- The old joint 3-task TCN likely mixed heterogeneous walking protocols into one representation.
+- Separate encoders preserve task-specific structure.
+- Concatenation keeps all three task signals available for downstream multimodal fusion.
+
+### Immediate experiment matrix
+1. Single-task TCN models: `SelfPace`, `HurriedPace`, `TUG`
+2. Late fusion of the three task-specific prediction heads
+3. Concatenated task embeddings followed by a small classifier
+4. Old joint 3-task TCN baseline
+
+### Planned architecture comparisons after the TCN baseline is stable
+- `TCN` per task
+- `1D CNN` per task
+- optional `BiLSTM` per task

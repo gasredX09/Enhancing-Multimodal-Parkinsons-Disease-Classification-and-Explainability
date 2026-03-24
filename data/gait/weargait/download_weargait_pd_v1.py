@@ -4,7 +4,7 @@ import synapseutils
 
 # ---- CONFIG ----
 VERSION_FOLDER_ID = "syn55052683"   # Version 1 folder from your screenshot
-DOWNLOAD_DIR = "/ocean/projects/med260006p/shared/biomedAI/project/replica/data/gait/weargait"
+DOWNLOAD_DIR = "/ocean/projects/med260006p/aguda1/biomedAI/project/data/gait/weargait"
 # ----------------
 
 def main():

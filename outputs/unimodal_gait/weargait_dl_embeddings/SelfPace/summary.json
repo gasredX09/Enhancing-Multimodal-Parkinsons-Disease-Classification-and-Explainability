@@ -1,0 +1,19 @@
+{
+  "n_windows": 2715,
+  "n_subjects": 183,
+  "n_channels": 18,
+  "window_sec": 6.0,
+  "target_hz": 100.0,
+  "tasks": [
+    "SelfPace"
+  ],
+  "embedding_dim": 256,
+  "mean_acc": 0.6862281179286168,
+  "mean_f1": 0.7541475593133062,
+  "mean_auc": 0.7267849458240472,
+  "outputs": {
+    "metrics_csv": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/SelfPace/cv_metrics.csv",
+    "embeddings_npz": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/SelfPace/weargait_subject_embeddings.npz",
+    "predictions_npz": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/SelfPace/predictions.npz"
+  }
+}

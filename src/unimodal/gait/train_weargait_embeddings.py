@@ -21,7 +21,9 @@ SEED = 42
 TASKS_DEFAULT = ["SelfPace", "HurriedPace", "TUG"]
 
 
-# Core channel subset for v1 to reduce heterogeneity but keep gait signal richness.
+# IMU-only core channel subset.
+# We intentionally exclude force/CoP channels because they are missing in many files,
+# while lower-back and ankle IMUs retain much better cohort coverage.
 CHANNELS_V1 = [
     "LowerBack_Acc_X", "LowerBack_Acc_Y", "LowerBack_Acc_Z",
     "LowerBack_Gyr_X", "LowerBack_Gyr_Y", "LowerBack_Gyr_Z",
@@ -29,7 +31,6 @@ CHANNELS_V1 = [
     "L_Ankle_Gyr_X", "L_Ankle_Gyr_Y", "L_Ankle_Gyr_Z",
     "R_Ankle_Acc_X", "R_Ankle_Acc_Y", "R_Ankle_Acc_Z",
     "R_Ankle_Gyr_X", "R_Ankle_Gyr_Y", "R_Ankle_Gyr_Z",
-    "LTotalForce", "RTotalForce", "LCoP_X", "LCoP_Y", "RCoP_X", "RCoP_Y",
 ]
 
 

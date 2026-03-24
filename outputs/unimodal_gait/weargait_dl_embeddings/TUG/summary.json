@@ -1,0 +1,19 @@
+{
+  "n_windows": 3296,
+  "n_subjects": 181,
+  "n_channels": 18,
+  "window_sec": 6.0,
+  "target_hz": 100.0,
+  "tasks": [
+    "TUG"
+  ],
+  "embedding_dim": 256,
+  "mean_acc": 0.664834712523005,
+  "mean_f1": 0.7198362230148805,
+  "mean_auc": 0.7485259786409053,
+  "outputs": {
+    "metrics_csv": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/TUG/cv_metrics.csv",
+    "embeddings_npz": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/TUG/weargait_subject_embeddings.npz",
+    "predictions_npz": "/ocean/projects/med260006p/aguda1/biomedAI/project/outputs/unimodal_gait/weargait_dl_embeddings/TUG/predictions.npz"
+  }
+}

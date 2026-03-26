@@ -74,8 +74,7 @@ From the project root:
 ```bash
 python src/unimodal/gait/train_gait.py
 python src/unimodal/gait/prepare_weargait_index.py
-python src/unimodal/gait/gait_ensemble_orchestrator.py --tasks weargait
-python src/unimodal/gait/concat_weargait_task_embeddings.py
+python src/unimodal/gait/train_weargait_embeddings.py
 python src/unimodal/gait/train_gait_rf.py
 ```
 
@@ -99,7 +98,7 @@ Notes:
 - src/unimodal/gait/prepare_weargait_index.py
 	- Builds WearGait manifest CSV for downstream modeling.
 - src/unimodal/gait/train_weargait_embeddings.py
-	- Trains task-specific WearGait models and exports per-task embeddings; use the orchestrator plus concatenation utility for the three-task workflow.
+	- Trains WearGait model and exports embeddings.
 - src/unimodal/gait/train_gait_rf.py
 	- Random forest baseline replication using engineered features.
 

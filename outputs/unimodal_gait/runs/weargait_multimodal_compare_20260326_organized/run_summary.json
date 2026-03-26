@@ -1,0 +1,37 @@
+{
+  "run_dir": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized",
+  "handwriting_model": "best",
+  "speech_model": "mean",
+  "n_splits": 5,
+  "n_repeats": 10,
+  "best_fusion_by_auc": {
+    "gait_representation": "TUG",
+    "strategy": "softmax_auc_weighted",
+    "auc_mean": 0.7275471991172011,
+    "auc_std": 0.0709527332605217,
+    "auc_ci_lo": 0.5833232689210951,
+    "auc_ci_hi": 0.8559052083333333,
+    "n_bootstrap": 2000
+  },
+  "best_gait_unimodal_auc": {
+    "gait_representation": "TUG",
+    "modality": "gait",
+    "subjects": 181,
+    "prevalence": 0.5414364640883977,
+    "accuracy": 0.7513812154696132,
+    "f1": 0.7804878048780488,
+    "auc": 0.810794197196951,
+    "ap": 0.801531881917158,
+    "weight": 0.3641617994710643
+  },
+  "outputs": {
+    "gait_repeated_cv_split_metrics_csv": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/gait_repeated_cv_split_metrics.csv",
+    "gait_oof_probabilities_csv": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/gait_oof_probabilities.csv",
+    "modality_metrics_csv": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/modality_metrics.csv",
+    "fusion_strategy_summary_csv": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/fusion_strategy_summary.csv",
+    "fusion_detailed_results_json": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/fusion_detailed_results.json",
+    "fusion_strategy_comparison_png": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/fusion_strategy_comparison.png",
+    "modality_weight_comparison_png": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/modality_weight_comparison.png",
+    "notes_md": "project/outputs/unimodal_gait/runs/weargait_multimodal_compare_20260326_organized/notes.md"
+  }
+}

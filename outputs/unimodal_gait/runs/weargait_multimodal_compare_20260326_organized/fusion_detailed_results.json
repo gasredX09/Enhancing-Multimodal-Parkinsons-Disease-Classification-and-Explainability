@@ -1,0 +1,124 @@
+{
+  "TUG": {
+    "unimodal_gait": {
+      "auc": 0.810794197196951,
+      "ap": 0.801531881917158,
+      "accuracy": 0.7513812154696132,
+      "f1": 0.7804878048780488,
+      "n_subjects": 181,
+      "prevalence": 0.5414364640883977,
+      "note": "WearGait embedding converted to subject-level OOF probabilities using RepeatedStratifiedKFold logistic regression (5 folds x 10 repeats). Representation=TUG."
+    },
+    "unimodal_handwriting": {
+      "auc": 0.5683183183183182,
+      "ap": 0.5459769548697926,
+      "accuracy": 0.547945205479452,
+      "f1": 0.5822784810126582,
+      "n_subjects": 73,
+      "prevalence": 0.5068493150684932,
+      "note": "PaHaW + UCI handwriting: PD vs HC (model=best, drawing\u2192subject aggregation by mean). N=73 subjects."
+    },
+    "unimodal_speech": {
+      "auc": 0.8473543966501714,
+      "ap": 0.8439184005860597,
+      "accuracy": 0.7793103448275862,
+      "f1": 0.7777777777777778,
+      "n_subjects": 290,
+      "prevalence": 0.4896551724137931,
+      "note": "Speech (mean): PD vs HC classification. N=290 participants."
+    },
+    "fusion_equal": {
+      "auc_mean": 0.7126106817699649,
+      "auc_std": 0.07299136090071925,
+      "auc_ci_lo": 0.5625,
+      "auc_ci_hi": 0.8493589743589743,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_auc_weighted": {
+      "auc_mean": 0.7207834023763404,
+      "auc_std": 0.0734638192441486,
+      "auc_ci_lo": 0.5716364601018675,
+      "auc_ci_hi": 0.8559222775764894,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_softmax_auc_weighted": {
+      "auc_mean": 0.7275471991172011,
+      "auc_std": 0.0709527332605217,
+      "auc_ci_lo": 0.5833232689210951,
+      "auc_ci_hi": 0.8559052083333333,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_confidence_weighted": {
+      "auc_mean": 0.6961893030824435,
+      "auc_std": 0.07466403848668444,
+      "auc_ci_lo": 0.5449779411764705,
+      "auc_ci_hi": 0.8370205648920493,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    }
+  },
+  "Concat": {
+    "unimodal_gait": {
+      "auc": 0.7849766412589131,
+      "ap": 0.7775355826306372,
+      "accuracy": 0.7458563535911602,
+      "f1": 0.7604166666666666,
+      "n_subjects": 181,
+      "prevalence": 0.5414364640883977,
+      "note": "WearGait embedding converted to subject-level OOF probabilities using RepeatedStratifiedKFold logistic regression (5 folds x 10 repeats). Representation=Concat."
+    },
+    "unimodal_handwriting": {
+      "auc": 0.5683183183183182,
+      "ap": 0.5459769548697926,
+      "accuracy": 0.547945205479452,
+      "f1": 0.5822784810126582,
+      "n_subjects": 73,
+      "prevalence": 0.5068493150684932,
+      "note": "PaHaW + UCI handwriting: PD vs HC (model=best, drawing\u2192subject aggregation by mean). N=73 subjects."
+    },
+    "unimodal_speech": {
+      "auc": 0.8473543966501714,
+      "ap": 0.8439184005860597,
+      "accuracy": 0.7793103448275862,
+      "f1": 0.7777777777777778,
+      "n_subjects": 290,
+      "prevalence": 0.4896551724137931,
+      "note": "Speech (mean): PD vs HC classification. N=290 participants."
+    },
+    "fusion_equal": {
+      "auc_mean": 0.7006287714772769,
+      "auc_std": 0.07354142444352638,
+      "auc_ci_lo": 0.5484387414587637,
+      "auc_ci_hi": 0.836545,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_auc_weighted": {
+      "auc_mean": 0.7089553343697278,
+      "auc_std": 0.07390932488406651,
+      "auc_ci_lo": 0.5560763888888889,
+      "auc_ci_hi": 0.8466850649350648,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_softmax_auc_weighted": {
+      "auc_mean": 0.7159660452031031,
+      "auc_std": 0.07260504465734983,
+      "auc_ci_lo": 0.571422371031746,
+      "auc_ci_hi": 0.852273209600247,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    },
+    "fusion_confidence_weighted": {
+      "auc_mean": 0.6763383302465715,
+      "auc_std": 0.07687586278073937,
+      "auc_ci_lo": 0.5240384615384616,
+      "auc_ci_hi": 0.8196745893719805,
+      "n_bootstrap": 2000,
+      "warning": "Bootstrap-simulated AUC on synthetic co-modal cohort. Labels are majority-voted across modalities. NOT a substitute for a real multi-modal test set."
+    }
+  }
+}

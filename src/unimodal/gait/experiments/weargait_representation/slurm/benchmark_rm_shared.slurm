@@ -1,14 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=weargait-sep-gpu
+#SBATCH --job-name=wg-repr-bench
 #SBATCH --output=/ocean/projects/med260006p/aguda1/biomedAI/project/logs/slurm/%x-%j.out
 #SBATCH --error=/ocean/projects/med260006p/aguda1/biomedAI/project/logs/slurm/%x-%j.err
-#SBATCH --partition=GPU-shared
+#SBATCH --partition=RM-shared
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=32G
-#SBATCH --gpus=v100-32:1
-#SBATCH --time=12:00:00
+#SBATCH --cpus-per-task=8
+#SBATCH --time=02:00:00
+#SBATCH --mem=16G
 #SBATCH --chdir=/ocean/projects/med260006p/aguda1/biomedAI/project
 #SBATCH --account=med260006p
 
@@ -17,8 +16,6 @@ set -euo pipefail
 PROJECT_ROOT="/ocean/projects/med260006p/aguda1/biomedAI/project"
 cd "${PROJECT_ROOT}"
 mkdir -p logs/slurm
-mkdir -p outputs/unimodal_gait/weargait_dl_embeddings
-mkdir -p outputs/unimodal_gait/weargait_concat_embeddings
 
 CONDA_ENV_NAME="${CONDA_ENV:-chiu-lab}"
 CONDA_ENV_PREFIX="${CONDA_ENV_PREFIX:-$HOME/.conda/envs/$CONDA_ENV_NAME}"
@@ -40,32 +37,13 @@ export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 export OPENBLAS_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 export NUMEXPR_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 
-FORCE_FLAG=""
-if [[ "${FORCE:-1}" == "1" ]]; then
-  FORCE_FLAG="--force"
-fi
+RUN_NAME="${RUN_NAME:-weargait_representation_benchmark_$(date +%Y%m%d_%H%M%S)}"
+RUN_DIR="outputs/unimodal_gait/runs/${RUN_NAME}"
 
 echo "[INFO] Job ID: ${SLURM_JOB_ID:-N/A}"
 echo "[INFO] Host: $(hostname)"
-echo "[INFO] Project root: ${PROJECT_ROOT}"
-echo "[INFO] Python: $(command -v python)"
-echo "[INFO] Started: $(date)"
+echo "[INFO] Run dir: ${RUN_DIR}"
 
-python - <<'PY'
-import torch
-print('[INFO] CUDA available:', torch.cuda.is_available())
-print('[INFO] CUDA devices:', torch.cuda.device_count())
-if torch.cuda.is_available():
-    print('[INFO] Device 0:', torch.cuda.get_device_name(0))
-PY
-
-nvidia-smi || true
-
-python src/unimodal/gait/prepare_weargait_index.py
-python src/unimodal/gait/gait_ensemble_orchestrator.py --tasks weargait ${FORCE_FLAG}
-python src/unimodal/gait/concat_weargait_task_embeddings.py \
-  --input-root outputs/unimodal_gait/weargait_dl_embeddings \
-  --output-dir outputs/unimodal_gait/weargait_concat_embeddings \
-  --tasks SelfPace HurriedPace TUG
-
-echo "[INFO] Finished: $(date)"
+echo "[INFO] Starting benchmark at $(date)"
+python src/unimodal/gait/experiments/weargait_representation/run_experiment.py --run-dir "${RUN_DIR}"
+echo "[INFO] Finished benchmark at $(date)"

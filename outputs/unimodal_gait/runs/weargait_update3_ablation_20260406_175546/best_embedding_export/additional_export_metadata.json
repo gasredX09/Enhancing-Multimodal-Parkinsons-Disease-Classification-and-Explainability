@@ -1,0 +1,27 @@
+{
+  "tug_pca32_csv": {
+    "path": "project/outputs/unimodal_gait/runs/weargait_update3_ablation_20260406_175546/best_embedding_export/tug_pca32_subject_embeddings.csv",
+    "n_subjects": 181,
+    "output_dim": 32,
+    "explained_variance_ratio_sum": 0.9999784231185913
+  },
+  "all3_mi128_npz": {
+    "path": "project/outputs/unimodal_gait/runs/weargait_update3_ablation_20260406_175546/best_embedding_export/all3_mi128_subject_embeddings.npz",
+    "n_subjects": 181,
+    "input_dim": 768,
+    "output_dim": 128,
+    "feature_names_preview": [
+      "SelfPace_emb_007",
+      "SelfPace_emb_033",
+      "SelfPace_emb_064",
+      "SelfPace_emb_069",
+      "SelfPace_emb_097",
+      "SelfPace_emb_131",
+      "HurriedPace_emb_023",
+      "HurriedPace_emb_028",
+      "HurriedPace_emb_050",
+      "HurriedPace_emb_068"
+    ]
+  },
+  "note": "Additional full-cohort transformed exports for Update-3: TUG PCA32 as CSV and All3 with MI-based feature selection to 128 dimensions."
+}

@@ -1,0 +1,13 @@
+{
+  "run_dir": "project/outputs/unimodal_gait/runs/weargait_representation_benchmark_2026-03-26_organized",
+  "common_subjects": 181,
+  "n_splits": 5,
+  "n_repeats": 10,
+  "best_by_auc": "TUG",
+  "outputs": {
+    "per_split_metrics_csv": "project/outputs/unimodal_gait/runs/weargait_representation_benchmark_2026-03-26_organized/per_split_metrics.csv",
+    "summary_metrics_csv": "project/outputs/unimodal_gait/runs/weargait_representation_benchmark_2026-03-26_organized/summary_metrics.csv",
+    "benchmark_plot": "project/outputs/unimodal_gait/runs/weargait_representation_benchmark_2026-03-26_organized/representation_benchmark.png",
+    "notes_md": "project/outputs/unimodal_gait/runs/weargait_representation_benchmark_2026-03-26_organized/notes.md"
+  }
+}

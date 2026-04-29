@@ -1,0 +1,15 @@
+{
+  "source_embedding": "project/outputs/unimodal_gait/weargait_dl_embeddings/TUG/weargait_subject_embeddings.npz",
+  "output_embedding": "project/outputs/unimodal_gait/runs/weargait_update3_ablation_20260406_175546/best_embedding_export/tug_pca32_subject_embeddings.npz",
+  "n_subjects": 181,
+  "input_dim": 256,
+  "output_dim": 32,
+  "transform": {
+    "scaler": "StandardScaler",
+    "pca": {
+      "n_components": 32,
+      "explained_variance_ratio_sum": 0.9999784231185913
+    }
+  },
+  "note": "Full-cohort transformed export of the winning Update-3 representation: TUG embedding followed by StandardScaler and PCA(32)."
+}

@@ -292,3 +292,82 @@ We are now treating WearGait as three related but distinct tasks instead of forc
 - `TCN` per task
 - `1D CNN` per task
 - optional `BiLSTM` per task
+
+## 12) 2026-03-25 WearGait Data Refresh + IMU-Only Rerun
+
+### What changed
+- The WearGait dataset was re-downloaded, which restored the missing PD participant files.
+- Rebuilding the index produced:
+  - `554` indexed task rows
+  - `185` unique subjects
+  - `100` PD
+  - `85` HC
+  - task coverage: `SelfPace=185`, `HurriedPace=185`, `TUG=184`
+- An audit showed that the main source of subject loss was the original requirement for force and center-of-pressure channels.
+- The WearGait trainer was updated to use an IMU-only core channel set:
+  - lower back accelerometer + gyroscope
+  - left ankle accelerometer + gyroscope
+  - right ankle accelerometer + gyroscope
+- This reduced required channels from `24` to `18` and recovered substantially more usable subjects.
+
+### Why the channel set changed
+The previous channel set dropped `41` indexed files for missing required channels.
+Most of those drops were due to six force/CoP channels being absent:
+- `LTotalForce`
+- `RTotalForce`
+- `LCoP_X`
+- `LCoP_Y`
+- `RCoP_X`
+- `RCoP_Y`
+
+A quick coverage audit showed that switching to IMU-only channels should recover cohort coverage to about:
+- `SelfPace`: `183`
+- `HurriedPace`: `183`
+- `TUG`: `181`
+
+### New SLURM run summary
+A new GPU rerun was submitted after the channel update and completed successfully:
+- Job: `38183471`
+- Logs:
+  - `project/logs/slurm/weargait-sep-gpu-38183471.out`
+  - `project/logs/slurm/weargait-sep-gpu-38183471.err`
+- Result: completed without fatal errors
+- Non-fatal warnings: CuDNN `nvrtc.so` workaround warning only
+
+### Updated WearGait task results
+Using the IMU-only 18-channel configuration:
+- `SelfPace`
+  - `183` subjects
+  - embedding shape: `(183, 256)`
+  - mean accuracy: `0.6862`
+  - mean F1: `0.7541`
+  - mean AUC: `0.7268`
+- `HurriedPace`
+  - `183` subjects
+  - embedding shape: `(183, 256)`
+  - mean accuracy: `0.6294`
+  - mean F1: `0.7053`
+  - mean AUC: `0.6401`
+- `TUG`
+  - `181` subjects
+  - embedding shape: `(181, 256)`
+  - mean accuracy: `0.6648`
+  - mean F1: `0.7198`
+  - mean AUC: `0.7485`
+
+### Updated concatenated embedding result
+- Output:
+  - `outputs/unimodal_gait/weargait_concat_embeddings/weargait_concat_subject_embeddings.npz`
+- Final fusion-ready gait embedding:
+  - `181` subjects
+  - shape: `(181, 768)`
+
+### Interpretation
+- The channel cleanup worked.
+- The concatenated gait cohort improved from `170` subjects in the earlier rerun to `181` subjects after the IMU-only update.
+- `TUG` remains the strongest single WearGait task by AUC.
+- The project is now in a good state to proceed with multimodal fusion using the concatenated gait embeddings.
+
+### Recommended next step
+- Proceed with multimodal fusion using the current concatenated gait embedding as the primary gait input.
+- Treat `SelfPace`, `HurriedPace`, and `TUG` single-task results as ablation baselines.

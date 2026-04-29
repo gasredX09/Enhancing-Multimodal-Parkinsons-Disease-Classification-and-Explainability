@@ -1,0 +1,70 @@
+{
+  "strategy": "auc_weighted",
+  "calibrate": true,
+  "normalize_prevalence": false,
+  "modality_names": [
+    "gait",
+    "handwriting",
+    "speech"
+  ],
+  "weights": {
+    "gait": 0.33900618330689714,
+    "handwriting": 0.3383143531574842,
+    "speech": 0.3226794635356185
+  },
+  "modality_aucs": {
+    "gait": 0.7610031964593065,
+    "handwriting": 0.7594501718213059,
+    "speech": 0.7243528740007614
+  },
+  "modality_metrics": {
+    "gait": {
+      "auc": 0.7610031964593065,
+      "ap": 0.7622239717471315,
+      "accuracy": 0.6795580110497238,
+      "f1": 0.7238095238095238,
+      "n_subjects": 181,
+      "prevalence": 0.5414364640883977
+    },
+    "handwriting": {
+      "auc": 0.7594501718213059,
+      "ap": 0.8581416450217688,
+      "accuracy": 0.722972972972973,
+      "f1": 0.8038277511961722,
+      "n_subjects": 148,
+      "prevalence": 0.6554054054054054
+    },
+    "speech": {
+      "auc": 0.7243528740007614,
+      "ap": 0.6905297535772554,
+      "accuracy": 0.6517241379310345,
+      "f1": 0.6273062730627307,
+      "n_subjects": 290,
+      "prevalence": 0.4896551724137931
+    }
+  },
+  "modality_notes": {
+    "gait": "OOF predictions via 5-fold CV (LogisticRegression). Gait raw embeddings. Source: gait_embeddings_0407.npz. N=181 subjects.",
+    "handwriting": "Handwriting OOF predictions via 5-fold LogisticRegression CV on 8-dim embeddings. Source: handwriting_embeddings_0406.csv. N=148 subjects.",
+    "speech": "Speech predictions (use_emb=concat, clf=LogisticRegression). Source: speech_embeddings_0325.npz. N=290 participants."
+  },
+  "platt_params": {
+    "gait": {
+      "a": 0.5743134785106848,
+      "b": 0.04821348107699864
+    },
+    "handwriting": {
+      "a": 1.3668978860966514,
+      "b": -0.19711023449932977
+    },
+    "speech": {
+      "a": 0.3725482205806721,
+      "b": 0.036865452755825236
+    }
+  },
+  "modality_prevalences": {
+    "gait": 0.5414364640883977,
+    "handwriting": 0.6554054054054054,
+    "speech": 0.4896551724137931
+  }
+}

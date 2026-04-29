@@ -1,0 +1,4 @@
+modality,auc,auc_ci_lo,auc_ci_hi,sensitivity,specificity,f1,accuracy,brier,note
+gait,0.7619,0.6884,0.8275,0.7755,0.5663,0.7238,0.6796,0.2028,calibrated OOF on real labels
+handwriting,0.7614,0.6769,0.8405,0.866,0.451,0.8038,0.723,0.1869,calibrated OOF on real labels
+speech,0.7239,0.6631,0.776,0.5986,0.7027,0.6273,0.6517,0.213,calibrated OOF on real labels

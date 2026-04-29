@@ -33,6 +33,7 @@ venv/
 *.joblib
 *.npy
 *.npz
+!src/multimodal_fusion/embeddings/*.npz
 
 # Large compressed packages
 *.zip

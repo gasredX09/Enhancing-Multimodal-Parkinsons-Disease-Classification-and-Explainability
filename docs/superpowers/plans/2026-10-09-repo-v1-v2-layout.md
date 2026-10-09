@@ -593,7 +593,7 @@ The text `BASELINE_SHA` stands for the last commit before the layout change. Rep
 SHA=$(python3 -I -c 'import json,sys; print(json.load(open(sys.argv[1]))["head"][:7])' "$WORK/baseline.json")
 sed -i '' "s/BASELINE_SHA/$SHA/g" README.md   # macOS sed. With GNU sed, drop the empty quotes after -i.
 grep -c BASELINE_SHA README.md                # Expected: 0
-grep -n "$SHA" README.md | head -3            # Expected: two lines that now show the hash
+grep -n "$SHA" README.md | head -3            # Expected: one line (the "About v1's paths" paragraph), showing the hash twice
 ```
 
 - [ ] **Step 2: Split the ignore rules**
@@ -785,12 +785,14 @@ Append this to the end of `DECISIONS.md`. The first line of the block is empty, 
 - [ ] **Step 6: Check the ignore rules and the files, then commit**
 
 ```bash
-git check-ignore -v --no-index v1/data/gait/other_raw.csv v1/src/unimodal/speech/new_weights.npz notes.local.env v2/data/x.csv
-git check-ignore -v --no-index v1/src/multimodal_fusion/embeddings/new_embeddings.npz v1/data/handwriting/new_file.csv; echo "exit (1 means neither is ignored, as intended): $?"
+for p in v1/data/gait/other_raw.csv v1/src/unimodal/speech/new_weights.npz notes.local.env v2/data/x.csv \
+         v1/src/multimodal_fusion/embeddings/new_embeddings.npz v1/data/handwriting/new_file.csv; do
+  git check-ignore -q --no-index "$p"; echo "exit $? : $p"
+done
 git status --short
 ```
 
-Expected: the first command lists four ignored paths with the rule that matches each. The second prints nothing and the exit code is `1`, because the embeddings exception and the handwriting allowlist keep those two paths tracked. `git status` shows `M AGENTS.md`, `M DECISIONS.md`, `M v1/.gitignore`, and untracked `.gitignore`, `FLOW.md` and `README.md`.
+Expected: the first four lines say `exit 0` (ignored: a non-handwriting data file, a weights file, a local-account file and a path under `v2/data/`). The last two say `exit 1` (not ignored, on purpose: the embeddings exception and the handwriting allowlist keep those paths tracked). Check one path at a time: `git check-ignore -q` accepts only one path, and with `-v` git also prints re-include rules and exits 0, which looks like a failure but is not. `git status` shows `M AGENTS.md`, `M DECISIONS.md`, `M v1/.gitignore`, and untracked `.gitignore`, `FLOW.md` and `README.md`.
 
 ```bash
 git add README.md .gitignore v1/.gitignore AGENTS.md FLOW.md DECISIONS.md

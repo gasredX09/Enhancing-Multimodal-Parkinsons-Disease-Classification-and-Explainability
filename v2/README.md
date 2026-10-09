@@ -8,7 +8,7 @@ v1 trained models on separate cohorts, so its fusion scores come from randomly p
 
 ## Plan
 
-- **mPower** (Sage Bionetworks, on Synapse): voice, finger tapping and walking from the same phone users. The published analysis found 2,729 people with all three, of whom 645 reported a PD diagnosis. The labels are self-reported, so the target is called "self-reported PD vs not" everywhere. Access needs a Synapse account, a certification quiz, an identity document and an intended-use statement. The data cannot be redistributed.
+- **mPower** (Sage Bionetworks, on Synapse): voice, finger tapping and walking from the same phone users. The published analysis found 2,729 people with all three, of whom 645 reported a PD diagnosis. The labels are self-reported, so the target is called "self-reported PD vs not" everywhere. Access needs a Synapse account, a certification quiz, identity attestation (a notarized letter, a letter from a signing official, or a professional license) and an intended-use statement. The data cannot be redistributed.
 - **PADS** (PhysioNet): smartwatch motion on 11 tasks plus a symptom questionnaire for 469 people, openly downloadable under CC BY-NC-SA 4.0. It has no speech, so it serves as a movement-only track.
 
 Why these two, and what else was considered: [`docs/dataset-survey.md`](docs/dataset-survey.md).

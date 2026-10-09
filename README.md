@@ -14,10 +14,11 @@ v1 used separate public datasets for gait, handwriting and speech, with differen
 ## Shared files
 
 - [`AGENTS.md`](AGENTS.md): the working rules for people and AI agents in this repo.
+- `CLAUDE.md`: contains only `@AGENTS.md`.
 - [`DECISIONS.md`](DECISIONS.md): a dated record of structural decisions.
 - [`FLOW.md`](FLOW.md): entry points and execution order for each version.
 - `docs/superpowers/`: design specs and implementation plans.
 
 ## About v1's paths
 
-v1 is kept exactly as it was, including the paths and cluster settings inside its scripts, which belong to the original course environment. Run v1 commands from inside `v1/`. The last commit before this layout is `4c1dee4`: use `git show 4c1dee4:README.md` to see the original README, or check that commit out to see the old layout.
+v1 is kept exactly as it was, including the paths and cluster settings inside its scripts, which belong to the original course environment. Run v1 commands from inside `v1/`. The test command in `AGENTS.md` runs from the repo root. The last commit before this layout is `4c1dee4`: use `git show 4c1dee4:README.md` to see the original README, or check that commit out to see the old layout.

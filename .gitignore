@@ -1,0 +1,45 @@
+.DS_Store
+
+# Python cache/build
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+
+# Local environments (account and allocation values go in *.local.* files)
+.env
+*.local.*
+.venv/
+venv/
+.conda/
+
+# Editor metadata
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Runtime logs
+*.log
+*.out
+*.err
+
+# Training artifacts
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.npy
+*.npz
+
+# Large compressed packages
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# v2 data lives outside the repo (see PD_DATA_ROOT). Safety net only.
+v2/data/

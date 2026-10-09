@@ -1,46 +1,8 @@
-.DS_Store
+# v1-specific rules. Generic rules (caches, envs, weights, archives) are in the root .gitignore.
+# Paths here are relative to this folder.
 
-# Python cache/build
-__pycache__/
-*.py[cod]
-*.so
-*.egg-info/
-build/
-dist/
-
-# Local environments
-.env
-*.local.*
-.venv/
-venv/
-.conda/
-
-# Editor metadata
-.vscode/
-.idea/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Runtime logs
-*.log
-*.out
-*.err
-
-# Training artifacts
-*.pt
-*.pth
-*.pkl
-*.joblib
-*.npy
-*.npz
+# Keep the committed fusion embeddings (the root ignores *.npz)
 !src/multimodal_fusion/embeddings/*.npz
-
-# Large compressed packages
-*.zip
-*.tar
-*.tar.gz
-*.7z
 
 # Speech model run folders
 src/unimodal/speech/scripts/catboost_info/
@@ -54,4 +16,3 @@ data/handwriting/processed/merged_handwriting_timeseries.csv
 data/*
 !data/handwriting/
 !data/handwriting/**
-

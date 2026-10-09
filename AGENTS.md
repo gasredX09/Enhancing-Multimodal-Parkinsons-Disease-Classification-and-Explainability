@@ -4,9 +4,9 @@ Rules for AI coding agents and people working in this repo. They apply to every 
 
 ## What this repo is
 
-Multimodal Parkinson's disease classification from gait, handwriting and speech, with late fusion and SHAP explainability. It began as a team capstone for a CMU course (PBAI) and is public. `README.md` describes the current layout. `DECISIONS.md` records why things are the way they are.
+Multimodal Parkinson's disease classification from gait, handwriting and speech, with late fusion and SHAP explainability. It began as a team capstone for a CMU course (PBAI) and is public. The repo holds two versions. `v1/` is the finished capstone and is frozen: do not edit anything under `v1/` unless asked. `v2/` is the redo on datasets where the same people have several modalities. `README.md` describes the layout, `DECISIONS.md` records why things are the way they are, and `FLOW.md` lists the entry points.
 
-Run the tests from the repo root: `python3 -m unittest discover -s tests -v`. Tests use the standard library `unittest`.
+Run the v1 tests from the repo root: `python3 -m unittest discover -s v1/tests -v`. Tests use the standard library `unittest`. v2 tests are added with v2 code.
 
 ## Data and credentials
 
